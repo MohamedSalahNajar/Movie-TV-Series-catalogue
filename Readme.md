@@ -4,10 +4,15 @@ A simple movie and TV series catalogue website built with HTML, CSS, and JavaScr
 
 ## Features
 
-- 📺 Browse popular movies and TV shows
+- 🌓 **Light & Dark Mode** - Toggle between themes with a click (saves your preference)
+- 🎬 Browse movies and TV shows with multiple sections:
+  - 🔥 Trending Now
+  - ⭐ Popular
+  - 🏆 Top Rated
+- 🎭 Filter by categories/genres (Action, Comedy, Drama, etc.)
 - 🔍 Search for any movie or TV series
 - 📊 View detailed information (ratings, release dates, overview, genres)
-- 🎨 Clean and responsive design
+- 🎨 Professional design with smooth transitions
 - ⚡ Fast and simple interface
 
 ## How to Use
@@ -53,10 +58,13 @@ tmdb/
 
 ## How It Works
 
-1. **Movies/TV Toggle**: Switch between movies and TV shows using the navigation buttons
-2. **Search**: Type a movie or show name and click "Search" to find specific titles
-3. **View Details**: Click on any movie/show card to see more information in a popup modal
-4. **Responsive**: Works on desktop, tablet, and mobile devices
+1. **Theme Toggle**: Click the "Light"/"Dark" button to switch between themes (your preference is saved)
+2. **Movies/TV Toggle**: Switch between movies and TV shows using the navigation buttons
+3. **Browse Categories**: Click on genre buttons (Action, Comedy, Drama, etc.) to filter content
+4. **Multiple Sections**: Scroll through Trending, Popular, and Top Rated sections
+5. **Search**: Type a movie or show name and click "Search" to find specific titles
+6. **View Details**: Click on any movie/show card to see more information in a popup modal
+7. **Responsive**: Works on desktop, tablet, and mobile devices
 
 ## Technologies Used
 
@@ -70,20 +78,28 @@ tmdb/
 This project uses [The Movie Database (TMDB) API](https://www.themoviedb.org/documentation/api).
 
 ### API Endpoints Used:
-- Popular movies: `/movie/popular`
-- Popular TV shows: `/tv/popular`
-- Search movies: `/search/movie`
-- Search TV shows: `/search/tv`
-- Movie/TV details: `/movie/{id}` or `/tv/{id}`
+- Trending: `/trending/{movie|tv}/day`
+- Popular: `/{movie|tv}/popular`
+- Top Rated: `/{movie|tv}/top_rated`
+- Genres: `/genre/{movie|tv}/list`
+- Discover by genre: `/discover/{movie|tv}?with_genres={id}`
+- Search: `/search/{movie|tv}`
+- Details: `/{movie|tv}/{id}`
 
-## Screenshots
+## What's Included
 
-The website includes:
-- A beautiful gradient background
+The website features:
+- **Light & Dark Mode Toggle** with theme persistence (saves your choice)
+  - Dark mode: Netflix-inspired with red accents
+  - Light mode: Clean design with blue accents
+- Category/genre filter buttons for easy browsing
+- Three content sections: Trending, Popular, and Top Rated
 - Movie/TV show cards with posters and ratings
 - A search bar to find specific titles
+- Smooth animations and hover effects
 - A modal popup for detailed information
-- Responsive design that works on all devices
+- Custom scrollbar styling
+- Fully responsive design that works on all devices
 
 ## Tips for Students
 
