@@ -2,6 +2,8 @@
 
 A simple movie and TV series catalogue website built with HTML, CSS, and JavaScript using The Movie Database (TMDB) API.
 
+> 📱 **Mobile Version Available!** Check out `mobile.html` for a dedicated smartphone-optimized version with touch-friendly controls and bottom navigation. See [MOBILE-README.md](MOBILE-README.md) for details.
+
 ## Features
 
 - 🌓 **Light & Dark Mode** - Toggle between themes with a click (saves your preference)
@@ -50,15 +52,19 @@ const API_KEY = 'abc123def456ghi789jkl';
 
 ```
 tmdb/
-├── index.html      # Main HTML file
-├── style.css       # Styling and layout
-├── script.js       # JavaScript logic and API calls
-└── README.md       # This file
+├── index.html           # Desktop HTML file
+├── style.css            # Desktop styling
+├── script.js            # Desktop JavaScript
+├── mobile.html          # Mobile HTML file
+├── mobile-style.css     # Mobile styling
+├── mobile-script.js     # Mobile JavaScript
+├── README.md            # Desktop documentation
+└── MOBILE-README.md     # Mobile documentation
 ```
 
 ## How It Works
 
-1. **Theme Toggle**: Click the "Light"/"Dark" button to switch between themes (your preference is saved)
+1. **Theme Toggle**: Click the 🌙/☀️ button to switch between themes (your preference is saved)
 2. **Movies/TV Toggle**: Switch between movies and TV shows using the navigation buttons
 3. **Browse Categories**: Click on genre buttons (Action, Comedy, Drama, etc.) to filter content
 4. **Multiple Sections**: Scroll through Trending, Popular, and Top Rated sections

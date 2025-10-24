@@ -121,80 +121,33 @@ nav {
 
 /* Theme Toggle Button */
 .theme-toggle {
-    padding: 12px 24px;
+    padding: 10px 14px;
     background-color: var(--bg-tertiary);
     border: 2px solid var(--border-color);
-    border-radius: 8px;
+    border-radius: 50%;
     cursor: pointer;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text-primary);
-    transition: all 0.4s ease;
+    font-size: 24px;
+    transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 80px;
-    position: relative;
-    overflow: hidden;
-}
-
-.theme-toggle::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: var(--accent-primary);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 0;
-}
-
-.theme-toggle:hover::before {
-    opacity: 0.1;
+    width: 44px;
+    height: 44px;
 }
 
 .theme-toggle:hover {
     border-color: var(--accent-primary);
+    background-color: var(--hover-bg);
     box-shadow: 0 4px 12px rgba(25, 118, 210, 0.2);
 }
 
-.theme-text {
-    position: relative;
-    z-index: 1;
-    transition: opacity 0.3s ease;
-}
-
-/* Theme button states with fade animation */
-[data-theme="dark"] .theme-toggle {
-    animation: fadeInDark 0.4s ease;
-}
-
-[data-theme="light"] .theme-toggle {
-    animation: fadeInLight 0.4s ease;
-}
-
-@keyframes fadeInDark {
-    0% {
-        opacity: 0.5;
-        transform: scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes fadeInLight {
-    0% {
-        opacity: 0.5;
-        transform: scale(0.95);
-    }
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+.theme-icon {
+    display: block;
+    filter: grayscale(0);
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 #searchInput {
@@ -616,10 +569,6 @@ footer p {
 
     .search-container {
         flex-direction: column;
-    }
-
-    .theme-toggle {
-        width: 100%;
     }
 
     #searchInput {

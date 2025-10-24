@@ -1,6 +1,5 @@
 // TMDB API Configuration
-// You need to get your own API key from https://www.themoviedb.org/settings/api
-const API_KEY = '63d7f5564a0029be2192181278e04443'; // Replace with your TMDB API key
+const API_KEY = '63d7f5564a0029be2192181278e04443';
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 const IMG_LARGE_URL = 'https://image.tmdb.org/t/p/original';
@@ -12,12 +11,12 @@ let currentGenre = null;
 let genres = [];
 
 // DOM Elements
-const navBtns = document.querySelectorAll('.nav-btn');
+const mobileTabs = document.querySelectorAll('.mobile-tab');
 const searchInput = document.getElementById('searchInput');
 const searchBtn = document.getElementById('searchBtn');
 const themeToggle = document.getElementById('themeToggle');
 const themeIcon = document.querySelector('.theme-icon');
-const categoriesList = document.getElementById('categories-list');
+const categoriesScroll = document.getElementById('categories-scroll');
 const trendingContainer = document.getElementById('trending-container');
 const popularContainer = document.getElementById('popular-container');
 const topratedContainer = document.getElementById('toprated-container');
@@ -30,6 +29,7 @@ const categoryTitle = document.getElementById('category-title');
 const modal = document.getElementById('modal');
 const modalBody = document.getElementById('modal-body');
 const closeModal = document.querySelector('.close');
+const bottomNavBtns = document.querySelectorAll('.bottom-nav-btn');
 
 // Initialize the app
 function init() {
@@ -63,20 +63,16 @@ function updateThemeIcon(theme) {
 
 // Setup event listeners
 function setupEventListeners() {
-    // Navigation buttons
-    navBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            navBtns.forEach(b => b.classList.remove('active'));
+    // Mobile tab buttons
+    mobileTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            mobileTabs.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             currentType = this.getAttribute('data-type');
             currentPage = 1;
             currentGenre = null;
             searchInput.value = '';
-            contentSections.style.display = 'block';
-            resultsSection.style.display = 'none';
-            categorySection.style.display = 'none';
-            loadGenres();
-            loadAllContent();
+            showHome();
         });
     });
 
@@ -96,14 +92,67 @@ function setupEventListeners() {
     // Close modal
     closeModal.addEventListener('click', function() {
         modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
     });
 
-    // Close modal when clicking outside
-    window.addEventListener('click', function(e) {
+    // Close modal when clicking on background
+    modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
     });
+
+    // Bottom navigation
+    bottomNavBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const action = this.getAttribute('data-action');
+            handleBottomNav(action);
+        });
+    });
+}
+
+// Handle bottom navigation
+function handleBottomNav(action) {
+    bottomNavBtns.forEach(btn => btn.classList.remove('active'));
+    
+    switch(action) {
+        case 'home':
+            bottomNavBtns[0].classList.add('active');
+            showHome();
+            scrollToTop();
+            break;
+        case 'search':
+            bottomNavBtns[1].classList.add('active');
+            searchInput.focus();
+            scrollToTop();
+            break;
+        case 'categories':
+            bottomNavBtns[2].classList.add('active');
+            scrollToCategories();
+            break;
+    }
+}
+
+// Show home view
+function showHome() {
+    contentSections.style.display = 'block';
+    resultsSection.style.display = 'none';
+    categorySection.style.display = 'none';
+    loadGenres();
+    loadAllContent();
+}
+
+// Scroll helpers
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function scrollToCategories() {
+    const categoriesElement = document.querySelector('.mobile-categories');
+    if (categoriesElement) {
+        categoriesElement.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 // Load all genres/categories
@@ -119,36 +168,34 @@ async function loadGenres() {
     }
 }
 
-// Display genres as category buttons
+// Display genres as chips
 function displayGenres() {
-    categoriesList.innerHTML = '';
+    categoriesScroll.innerHTML = '';
     
-    // Add "All" button
-    const allBtn = document.createElement('button');
-    allBtn.className = 'category-btn';
-    allBtn.textContent = 'All';
-    allBtn.addEventListener('click', () => {
+    // Add "All" chip
+    const allChip = document.createElement('button');
+    allChip.className = 'category-chip active';
+    allChip.textContent = 'All';
+    allChip.addEventListener('click', () => {
         currentGenre = null;
-        document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
-        allBtn.classList.add('active');
-        contentSections.style.display = 'block';
-        categorySection.style.display = 'none';
-        resultsSection.style.display = 'none';
+        document.querySelectorAll('.category-chip').forEach(chip => chip.classList.remove('active'));
+        allChip.classList.add('active');
+        showHome();
     });
-    categoriesList.appendChild(allBtn);
+    categoriesScroll.appendChild(allChip);
     
-    // Add genre buttons
+    // Add genre chips
     genres.forEach(genre => {
-        const btn = document.createElement('button');
-        btn.className = 'category-btn';
-        btn.textContent = genre.name;
-        btn.addEventListener('click', () => {
+        const chip = document.createElement('button');
+        chip.className = 'category-chip';
+        chip.textContent = genre.name;
+        chip.addEventListener('click', () => {
             currentGenre = genre.id;
-            document.querySelectorAll('.category-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            document.querySelectorAll('.category-chip').forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
             loadByCategory(genre.id, genre.name);
         });
-        categoriesList.appendChild(btn);
+        categoriesScroll.appendChild(chip);
     });
 }
 
@@ -176,7 +223,7 @@ async function loadByCategory(genreId, genreName) {
     }
 }
 
-// Load all content sections (trending, popular, top rated)
+// Load all content sections
 async function loadAllContent() {
     loadTrending();
     loadPopular();
@@ -245,7 +292,6 @@ async function performSearch() {
     const query = searchInput.value.trim();
     
     if (query === '') {
-        alert('Please enter a search term!');
         return;
     }
 
@@ -254,6 +300,9 @@ async function performSearch() {
         contentSections.style.display = 'none';
         categorySection.style.display = 'none';
         resultsSection.style.display = 'block';
+        
+        bottomNavBtns.forEach(btn => btn.classList.remove('active'));
+        bottomNavBtns[1].classList.add('active');
 
         const url = `${BASE_URL}/search/${currentType}?api_key=${API_KEY}&query=${encodeURIComponent(query)}`;
         const response = await fetch(url);
@@ -356,11 +405,26 @@ async function showDetails(id) {
         `;
 
         modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
     } catch (error) {
         console.error('Error loading details:', error);
-        alert('Error loading details. Please try again.');
     }
 }
 
 // Start the app when page loads
 window.addEventListener('DOMContentLoaded', init);
+
+// Prevent pull-to-refresh on mobile
+let touchStartY = 0;
+document.addEventListener('touchstart', function(e) {
+    touchStartY = e.touches[0].clientY;
+}, { passive: false });
+
+document.addEventListener('touchmove', function(e) {
+    const touchY = e.touches[0].clientY;
+    const touchYDelta = touchY - touchStartY;
+    
+    if (touchYDelta > 0 && window.scrollY === 0) {
+        e.preventDefault();
+    }
+}, { passive: false });
