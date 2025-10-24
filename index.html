@@ -79,9 +79,10 @@
     <footer>
         <p>Made with ❤️ using TMDB API</p>
         <p>&copy; 2025 Movie Catalogue</p>
+        <p><button id="changeApiKey" class="footer-btn">Change API Key</button></p>
     </footer>
 
-    <script src="config.js"></script>
+    <script src="config.js" onerror="console.log('config.js not found - will prompt for API key')"></script>
     <script src="script.js"></script>
 </body>
 </html>

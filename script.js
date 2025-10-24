@@ -1,6 +1,14 @@
 // TMDB API Configuration
-// Get your API key from config.js (copy config.example.js to config.js and add your key)
-const API_KEY = CONFIG.API_KEY;
+let API_KEY = '';
+
+// Check if config.js exists (local development)
+if (typeof CONFIG !== 'undefined' && CONFIG.API_KEY) {
+    API_KEY = CONFIG.API_KEY;
+} else {
+    // Check localStorage for saved API key
+    API_KEY = localStorage.getItem('tmdb_api_key') || '';
+}
+
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 const IMG_LARGE_URL = 'https://image.tmdb.org/t/p/original';
@@ -34,9 +42,44 @@ const closeModal = document.querySelector('.close');
 // Initialize the app
 function init() {
     initTheme();
-    loadGenres();
-    loadAllContent();
+    
+    // Check if API key is available
+    if (!API_KEY || API_KEY === 'YOUR_TMDB_API_KEY_HERE') {
+        promptForAPIKey();
+    } else {
+        loadGenres();
+        loadAllContent();
+    }
+    
     setupEventListeners();
+}
+
+// Prompt user to enter API key
+function promptForAPIKey() {
+    const savedKey = localStorage.getItem('tmdb_api_key');
+    const message = savedKey 
+        ? 'Enter your TMDB API Key (or press Cancel to use the existing one):'
+        : 'Welcome! To use this app, you need a free TMDB API Key.\n\nGet one at: https://www.themoviedb.org/settings/api\n\nEnter your API Key:';
+    
+    const userKey = prompt(message, savedKey || '');
+    
+    if (userKey && userKey.trim() !== '') {
+        API_KEY = userKey.trim();
+        localStorage.setItem('tmdb_api_key', API_KEY);
+        loadGenres();
+        loadAllContent();
+    } else if (savedKey) {
+        API_KEY = savedKey;
+        loadGenres();
+        loadAllContent();
+    } else {
+        alert('API Key is required to use this application. Please refresh and enter a valid key.');
+    }
+}
+
+// Function to change API key (can be called from console)
+window.changeAPIKey = function() {
+    promptForAPIKey();
 }
 
 // Initialize theme from localStorage
@@ -98,12 +141,20 @@ function setupEventListeners() {
         modal.style.display = 'none';
     });
 
-    // Close modal when clicking outside
-    window.addEventListener('click', function(e) {
+    // Close modal when clicking on background
+    modal.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.style.display = 'none';
         }
     });
+
+    // Change API Key button
+    const changeApiKeyBtn = document.getElementById('changeApiKey');
+    if (changeApiKeyBtn) {
+        changeApiKeyBtn.addEventListener('click', function() {
+            promptForAPIKey();
+        });
+    }
 }
 
 // Load all genres/categories

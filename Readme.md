@@ -163,8 +163,51 @@ The website features:
 ### **Option 3: GitHub Pages**
 1. Push your code to GitHub (without config.js!)
 2. Enable GitHub Pages in repository settings
-3. Create config.js on your server with your API key
-4. Access via the GitHub Pages URL on any device
+3. Visit the GitHub Pages URL
+4. Enter your API key when prompted (it's saved in your browser's localStorage)
+5. Share the URL - visitors will need to enter their own API key
+
+## 🚀 Deploying to GitHub Pages
+
+This project is designed to work on GitHub Pages **without exposing your API key**:
+
+### **How It Works:**
+1. **Local Development**: Uses `config.js` (not committed to Git)
+2. **GitHub Pages**: Prompts users to enter their own API key
+3. **API Key Storage**: Saved in browser's localStorage (private to each user)
+
+### **Deployment Steps:**
+
+1. **Make sure `config.js` is NOT committed:**
+   ```bash
+   git status
+   # config.js should NOT appear in the list
+   ```
+
+2. **Push to GitHub:**
+   ```bash
+   git add .
+   git commit -m "Add movie catalogue website"
+   git push origin main
+   ```
+
+3. **Enable GitHub Pages:**
+   - Go to your repository settings
+   - Click "Pages" in the left sidebar
+   - Under "Source", select your branch (usually `main`)
+   - Click "Save"
+   - Your site will be live at: `https://username.github.io/repository-name/`
+
+4. **First Visit:**
+   - You'll see a prompt asking for your TMDB API key
+   - Enter your key - it's saved securely in your browser
+   - Click "Change API Key" in the footer to update it anytime
+
+### **Sharing Your Project:**
+- ✅ Anyone can use your site with their own API key
+- ✅ Your API key stays private
+- ✅ No server or backend needed
+- ✅ 100% free hosting on GitHub Pages
 
 ## Tips for Students
 
@@ -173,14 +216,27 @@ The website features:
 - You can customize the colors in `style.css` to make it your own
 - Try adding more features like trailers, favorites list, or user ratings!
 - Test the responsive design at different screen sizes using DevTools
+- Use the "Change API Key" button in the footer if you need to update your key
 
 ## Troubleshooting
 
+**Problem**: Prompt keeps asking for API key
+- **Solution**: Make sure you're entering a valid TMDB API key. Get one from https://www.themoviedb.org/settings/api
+
+**Problem**: "config.js not found" in console
+- **Solution**: This is normal on GitHub Pages. The app will prompt you for an API key instead
+
 **Problem**: Nothing loads or I see "Error loading content"
-- **Solution**: Make sure you added your API key correctly in `script.js`
+- **Solution**: 
+  - Check if your API key is valid
+  - Click "Change API Key" button and re-enter your key
+  - Check browser console for error messages
 
 **Problem**: Images don't show up
 - **Solution**: Check your internet connection and make sure the TMDB API is working
+
+**Problem**: API key not working after GitHub Pages deployment
+- **Solution**: Clear localStorage and enter the key again. Open console and type: `localStorage.clear()` then refresh
 
 **Problem**: Search doesn't work
 - **Solution**: Make sure you're connected to the internet and have a valid API key

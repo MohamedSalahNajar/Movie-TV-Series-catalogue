@@ -465,6 +465,24 @@ footer p {
     font-size: 0.95em;
 }
 
+.footer-btn {
+    padding: 8px 16px;
+    background-color: var(--bg-tertiary);
+    border: 2px solid var(--border-color);
+    border-radius: 6px;
+    color: var(--text-secondary);
+    font-size: 0.85em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+.footer-btn:hover {
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+    background-color: var(--hover-bg);
+}
+
 /* Loading Animation */
 .loading {
     text-align: center;
