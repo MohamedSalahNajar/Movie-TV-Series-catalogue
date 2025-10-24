@@ -548,64 +548,325 @@ footer p {
 }
 
 /* Responsive Design */
+
+/* Tablets and Small Laptops (768px - 1024px) */
+@media (max-width: 1024px) {
+    main {
+        max-width: 100%;
+        padding: 20px 16px;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 20px;
+    }
+
+    section h2 {
+        font-size: 1.9em;
+    }
+}
+
+/* Mobile Devices (max-width: 768px) */
 @media (max-width: 768px) {
+    body {
+        font-size: 14px;
+        padding-bottom: 0;
+    }
+
+    /* Header */
+    header {
+        padding: 20px 16px;
+    }
+
     header h1 {
-        font-size: 2em;
+        font-size: 1.8em;
     }
 
     header p {
         font-size: 1em;
     }
 
+    /* Navigation */
     nav {
         flex-direction: column;
         align-items: stretch;
-        position: relative;
+        position: sticky;
+        padding: 12px 16px;
+        gap: 12px;
     }
 
     .nav-container {
-        justify-content: center;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        justify-content: stretch;
     }
 
-    .search-container {
-        flex-direction: column;
-    }
-
-    #searchInput {
+    .nav-btn {
+        padding: 12px 16px;
+        font-size: 14px;
         width: 100%;
     }
 
+    .search-container {
+        flex-direction: row;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .theme-toggle {
+        order: -1;
+    }
+
+    #searchInput {
+        flex: 1;
+        width: auto;
+        font-size: 14px;
+        padding: 10px 16px;
+    }
+
+    #searchBtn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    /* Categories */
+    #categories-section {
+        padding: 16px;
+    }
+
     .categories-container h3 {
-        font-size: 1.2em;
+        font-size: 1.1em;
+        margin-bottom: 12px;
+    }
+
+    .categories-list {
+        display: flex;
+        overflow-x: auto;
+        gap: 8px;
+        padding-bottom: 8px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+    }
+
+    .categories-list::-webkit-scrollbar {
+        display: none;
+    }
+
+    .category-btn {
+        white-space: nowrap;
+        padding: 8px 18px;
+        font-size: 13px;
+        flex-shrink: 0;
+    }
+
+    /* Main Content */
+    main {
+        padding: 16px;
+    }
+
+    #content-sections {
+        gap: 32px;
+    }
+
+    .content-section {
+        margin-bottom: 16px;
+    }
+
+    section {
+        margin-bottom: 24px;
     }
 
     section h2 {
-        font-size: 1.8em;
+        font-size: 1.5em;
+        margin-bottom: 16px;
     }
 
+    /* Movie Grid - 2 columns on mobile */
     .movie-grid {
-        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
     }
 
+    /* Movie Cards */
+    .movie-card {
+        border-radius: 10px;
+    }
+
+    .movie-card img {
+        height: 220px;
+    }
+
+    .movie-info {
+        padding: 12px;
+    }
+
+    .movie-title {
+        font-size: 0.95em;
+        margin-bottom: 6px;
+    }
+
+    .movie-year {
+        font-size: 0.85em;
+        margin-bottom: 6px;
+    }
+
+    .movie-rating {
+        font-size: 0.8em;
+        padding: 4px 8px;
+    }
+
+    /* Modal */
     .modal-content {
-        width: 95%;
-        margin: 10% auto;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        border-radius: 0;
+        height: 100vh;
+        overflow-y: auto;
     }
 
     .modal-header {
-        height: 300px;
-    }
-
-    .modal-title {
-        font-size: 2em;
+        height: 250px;
+        border-radius: 0;
     }
 
     .modal-overlay {
-        padding: 20px;
+        padding: 16px;
+    }
+
+    .modal-title {
+        font-size: 1.6em;
     }
 
     .modal-details {
-        padding: 20px;
+        padding: 20px 16px;
+    }
+
+    .detail-row {
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+    }
+
+    .detail-label {
+        font-size: 0.9em;
+        margin-bottom: 6px;
+    }
+
+    .detail-row div:last-child {
+        font-size: 0.9em;
+    }
+
+    .close {
+        position: fixed;
+        top: 12px;
+        right: 12px;
+        font-size: 28px;
+        width: 40px;
+        height: 40px;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1001;
+    }
+
+    /* Footer */
+    footer {
+        padding: 20px 16px;
+        margin-top: 40px;
+    }
+
+    footer p {
+        font-size: 0.85em;
+    }
+}
+
+/* Small Mobile Devices (max-width: 480px) */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5em;
+    }
+
+    header p {
+        font-size: 0.9em;
+    }
+
+    section h2 {
+        font-size: 1.3em;
+    }
+
+    .movie-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .movie-card img {
+        height: 200px;
+    }
+
+    .modal-header {
+        height: 200px;
+    }
+
+    .modal-title {
+        font-size: 1.3em;
+    }
+}
+
+/* Extra Small Devices (max-width: 375px) */
+@media (max-width: 375px) {
+    .movie-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .movie-card img {
+        height: 280px;
+    }
+
+    .nav-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (hover: none) and (pointer: coarse) {
+    /* Remove hover effects on touch devices */
+    .movie-card:hover {
+        transform: none;
+    }
+
+    /* Add active/tap states instead */
+    .movie-card:active {
+        transform: scale(0.97);
+        transition: transform 0.1s ease;
+    }
+
+    .nav-btn:active,
+    .category-btn:active,
+    #searchBtn:active,
+    .theme-toggle:active {
+        transform: scale(0.95);
+    }
+
+    /* Disable hover animations */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+}
+
+/* Landscape Mode on Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .movie-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .movie-card img {
+        height: 180px;
+    }
+
+    .modal-header {
+        height: 200px;
     }
 }

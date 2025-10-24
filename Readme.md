@@ -1,8 +1,6 @@
 # 🎬 Movie & TV Series Catalogue
 
-A simple movie and TV series catalogue website built with HTML, CSS, and JavaScript using The Movie Database (TMDB) API.
-
-> 📱 **Mobile Version Available!** Check out `mobile.html` for a dedicated smartphone-optimized version with touch-friendly controls and bottom navigation. See [MOBILE-README.md](MOBILE-README.md) for details.
+A fully responsive movie and TV series catalogue website built with HTML, CSS, and JavaScript using The Movie Database (TMDB) API. Works perfectly on desktop, tablet, and mobile devices!
 
 ## Features
 
@@ -31,15 +29,19 @@ A simple movie and TV series catalogue website built with HTML, CSS, and JavaScr
 
 ### Step 2: Add Your API Key
 
-1. Open `script.js` file
-2. Find the line that says: `const API_KEY = 'YOUR_API_KEY_HERE';`
-3. Replace `YOUR_API_KEY_HERE` with your actual API key
+1. Copy `config.example.js` to create a new file named `config.js`
+2. Open `config.js` in a text editor
+3. Replace `YOUR_TMDB_API_KEY_HERE` with your actual API key
 4. Save the file
 
-Example:
+Example `config.js`:
 ```javascript
-const API_KEY = 'abc123def456ghi789jkl';
+const CONFIG = {
+    API_KEY: 'abc123def456ghi789jkl'
+};
 ```
+
+⚠️ **Important**: Never commit `config.js` to GitHub! It's already in `.gitignore` to protect your API key.
 
 ### Step 3: Run the Project
 
@@ -52,14 +54,13 @@ const API_KEY = 'abc123def456ghi789jkl';
 
 ```
 tmdb/
-├── index.html           # Desktop HTML file
-├── style.css            # Desktop styling
-├── script.js            # Desktop JavaScript
-├── mobile.html          # Mobile HTML file
-├── mobile-style.css     # Mobile styling
-├── mobile-script.js     # Mobile JavaScript
-├── README.md            # Desktop documentation
-└── MOBILE-README.md     # Mobile documentation
+├── index.html           # Main HTML file
+├── style.css            # Responsive styling (includes mobile @media queries)
+├── script.js            # JavaScript logic
+├── config.example.js    # Example config (copy to config.js)
+├── config.js            # Your API key (DO NOT commit!)
+├── .gitignore           # Protects config.js from Git
+└── README.md            # Documentation
 ```
 
 ## How It Works
@@ -72,10 +73,44 @@ tmdb/
 6. **View Details**: Click on any movie/show card to see more information in a popup modal
 7. **Responsive**: Works on desktop, tablet, and mobile devices
 
+## 📱 Responsive Design
+
+The website is fully responsive and adapts to all screen sizes:
+
+### **Desktop (> 1024px)**
+- Multi-column grid layout
+- Full navigation and search bar
+- Hover effects and animations
+
+### **Tablet (768px - 1024px)**
+- Optimized 3-4 column grid
+- Adjusted spacing and typography
+
+### **Mobile (< 768px)**
+- 2-column grid layout
+- Horizontal scrolling categories
+- Touch-optimized tap targets
+- Sticky navigation
+- Full-screen modals
+- Tap feedback animations
+
+### **Small Phones (< 480px)**
+- Compact layout
+- 2-column grid
+- Optimized font sizes
+
+### **Extra Small (< 375px)**
+- Single column grid
+- Stacked navigation
+
+### **Landscape Mode**
+- 3-column grid on mobile
+- Optimized modal height
+
 ## Technologies Used
 
 - HTML5
-- CSS3
+- CSS3 with Responsive @media queries
 - Vanilla JavaScript (ES6+)
 - TMDB API
 
@@ -98,21 +133,46 @@ The website features:
 - **Light & Dark Mode Toggle** with theme persistence (saves your choice)
   - Dark mode: Netflix-inspired with red accents
   - Light mode: Clean design with blue accents
+- **Fully Responsive Design** - One codebase that works on all devices:
+  - Desktop, tablet, and mobile optimized
+  - Touch-friendly on mobile with tap feedback
+  - Horizontal scrolling categories on small screens
+  - Full-screen modals on mobile devices
 - Category/genre filter buttons for easy browsing
 - Three content sections: Trending, Popular, and Top Rated
 - Movie/TV show cards with posters and ratings
 - A search bar to find specific titles
-- Smooth animations and hover effects
+- Smooth animations and hover effects (desktop) / tap effects (mobile)
 - A modal popup for detailed information
 - Custom scrollbar styling
-- Fully responsive design that works on all devices
+
+## 📲 Testing on Mobile Devices
+
+### **Option 1: Browser DevTools**
+1. Open the website in Chrome/Firefox
+2. Press F12 to open DevTools
+3. Click the device toggle icon (or Ctrl+Shift+M)
+4. Select a mobile device from the dropdown
+
+### **Option 2: Actual Mobile Device**
+1. Host the files on a local server (e.g., Live Server extension in VS Code)
+2. Get your computer's local IP address
+3. Open `http://YOUR_IP:PORT/index.html` on your phone
+4. Both devices must be on the same WiFi network
+
+### **Option 3: GitHub Pages**
+1. Push your code to GitHub (without config.js!)
+2. Enable GitHub Pages in repository settings
+3. Create config.js on your server with your API key
+4. Access via the GitHub Pages URL on any device
 
 ## Tips for Students
 
 - Make sure you keep your API key private (don't share it publicly)
 - The API has a rate limit, so don't make too many requests too quickly
 - You can customize the colors in `style.css` to make it your own
-- Try adding more features like categories, trailers, or a favorites list!
+- Try adding more features like trailers, favorites list, or user ratings!
+- Test the responsive design at different screen sizes using DevTools
 
 ## Troubleshooting
 
