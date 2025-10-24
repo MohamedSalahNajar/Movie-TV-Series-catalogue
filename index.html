@@ -3,9 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Movie & TV Series Catalogue</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <header>
+        <h1>🎬 Movie & TV Catalogue</h1>
+        <p>Discover your favorite movies and TV shows</p>
+    </header>
+
+    <nav>
+        <div class="nav-container">
+            <button class="nav-btn active" data-type="movie">Movies</button>
+            <button class="nav-btn" data-type="tv">TV Series</button>
+        </div>
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Search for movies or TV shows...">
+            <button id="searchBtn">Search</button>
+        </div>
+    </nav>
+
+    <main>
+        <section id="featured-section">
+            <h2>Popular Now</h2>
+            <div id="featured-container" class="movie-grid"></div>
+        </section>
+
+        <section id="results-section" style="display: none;">
+            <h2>Search Results</h2>
+            <div id="results-container" class="movie-grid"></div>
+        </section>
+    </main>
+
+    <!-- Movie Details Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Made with ❤️ using TMDB API</p>
+        <p>&copy; 2025 Movie Catalogue</p>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
