@@ -1,6 +1,6 @@
 // TMDB API Configuration
 // You need to get your own API key from https://www.themoviedb.org/settings/api
-const API_KEY = 'YOUR_API_KEY_HERE'; // Replace with your TMDB API key
+const API_KEY = '63d7f5564a0029be2192181278e04443'; // Replace with your TMDB API key
 const BASE_URL = 'https://api.themoviedb.org/3';
 const IMG_BASE_URL = 'https://image.tmdb.org/t/p/w500';
 const IMG_LARGE_URL = 'https://image.tmdb.org/t/p/original';
